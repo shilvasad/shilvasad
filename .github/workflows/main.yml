@@ -19,11 +19,11 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm ci # 'ci' is generally faster and more reliable for CI environments than 'install'
+        run: cd client && npm ci # 'ci' is generally faster and more reliable for CI environments than 'install'
                    # Use 'npm install' if you don't have a package-lock.json
 
       - name: Build project
-        run: npm run build # This should create the 'dist' folder as per your firebase.json
+        run: cd client && npm run build # This should create the 'dist' folder as per your firebase.json
 
       - name: Deploy to Firebase Hosting
         uses: FirebaseExtended/action-hosting-deploy@v0
