@@ -4,7 +4,11 @@
   "description": "- 👋 Hi, I’m [Md Asad Chowdhary](@shilvasad)\r - 👀 I’m interested in Full-Stack Web Development, Machine Learning, and Contributing to Open Source.\r - 🌱 I’m currently learning MERN Stack Development, and exploring different types of architectural design (i.e. Microservices, DDD, FDD, etc.)\r - 💞️ I’m looking to collaborate on innovative web applications or AI-driven projects.\r - 📫 Reaching me in my [email address](mailto:asad@suyena.com), connect me on my [LinkedIn profile](https://linkedin.com/in/md-asad-chowdhary) or find more details in my [personal website](https://asad.suyena.com).\r - 😄 Pronouns: He/Him\r - ⚡ Fun fact: I dream a lot!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "deploy": "cd client && npm run build && firebase deploy",
+    "dev": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "lint": "cd client && eslint .",
+    "preview": "cd client && vite preview"
   },
   "repository": {
     "type": "git",
