@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "initiate": "concurrently \" mkdir server \" \" npm create vite@latest client -- --template react && cd client && npm install \" \"cd server && npm init -y && npm install express cors dotenv nodemon mongoose bcryptjs jsonwebtoken multer\"  ",
-    "start": "concurrently \"cd client && npm run dev\" \"cd server && nodemon index.js\"",
+    "start": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
+    "dev": "concurrently \"cd client && npm run dev\" \"cd server && npm run dev\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm run dev",
+    "client:build": "cd client && npm run build",
     "build": "cd client && npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
