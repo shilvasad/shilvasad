@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+const API_URL = import.meta.env.VITE_API_URL
 function App() {
   const [pageDetails, setPageDetails] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -7,10 +8,12 @@ function App() {
   useEffect(() => {
     const fetchPageDetails = async () => {
       try {
-        const response = await fetch("http://localhost:1569/page-details");
+        console.log("Attempting to fetch from:", `${API_URL}/page-details`); 
+        const response = await fetch(`${API_URL}/page-details`);
         if (!response.ok) {
           throw new Error(`Error: ${response.status} ${response.statusText}`);
         }
+        console.log("Response received:", response);
         const data = await response.json();
         if (Array.isArray(data)) {
           setPageDetails(data);
