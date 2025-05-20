@@ -1,19 +1,22 @@
 import PageDetails from "./page-details.model.js";
 
+
 // Create page details
-const createPageDetails = async (req, res) => {
+export const createPageDetails = async (req, res)=>{
+  const newPageDetails = new PageDetails(req.body)
   try {
-    const pageDetails = req.body;
-    const newPageDetails = await PageDetails.create(pageDetails);
-    res.status(201).json(newPageDetails);
+    const savedPageDetails = await newPageDetails.save()
+    res.status(201).json(savedPageDetails)
+    
   } catch (error) {
     console.error("Error at createPageDetails: ", error);
     res.status(500).json({ message: "Error at createPageDetails" });
+    
   }
-};
+}
 
 // Get page details
-const getPageDetails = async (req, res) => {
+export const getPageDetails = async (req, res) => {
   try {
     const pageDetails = await PageDetails.find();
     if (!pageDetails) {
@@ -27,7 +30,7 @@ const getPageDetails = async (req, res) => {
 };
 
 // Get page details by id
-const getOnePageDetails = async (req, res) => {
+export const getOnePageDetails = async (req, res) => {
   try {
     const pageDetails = await PageDetails.findById(req.params.id);
     if (!pageDetails) {
@@ -43,7 +46,7 @@ const getOnePageDetails = async (req, res) => {
 };
 
 // Update page details
-const updatePageDetails = async (req, res) => {
+export const updatePageDetails = async (req, res) => {
   try {
     const { title } = req.body;
     const pageDetails = await PageDetails.findByIdAndUpdate(
@@ -62,7 +65,7 @@ const updatePageDetails = async (req, res) => {
 };
 
 // Delete page details
-const deletePageDetails = async (req, res) => {
+export const deletePageDetails = async (req, res) => {
   try {
     const pageDetails = await PageDetails.findByIdAndDelete(req.params.id);
     if (!pageDetails) {
@@ -73,12 +76,4 @@ const deletePageDetails = async (req, res) => {
     console.error("Error at deletePageDetails: ", error);
     res.status(500).json({ message: "Error at deletePageDetails" });
   }
-};
-
-export {
-  getOnePageDetails,
-  createPageDetails,
-  getPageDetails,
-  updatePageDetails,
-  deletePageDetails,
 };
