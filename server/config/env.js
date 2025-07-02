@@ -1,10 +1,12 @@
 import { config } from "dotenv";
 config();
-const CORS_ORIGIN = process.env.CORS_ORIGIN;
-if (!CORS_ORIGIN) {
+
+const arrayCORS = process.env.CORS_ORIGIN;
+if (!arrayCORS) {
   console.error("CORS_ORIGIN is not defined in .env file");
   process.exit(1);
 }
+const CORS_ORIGIN = arrayCORS.split(',').map(origin => origin.trim());
 const PORT = process.env.PORT;
 const HOST = process.env.HOST;
 const MONGO_URI = process.env.MONGO_URI;
