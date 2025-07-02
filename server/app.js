@@ -5,7 +5,13 @@ import {CORS_ORIGIN} from './config/env.js'
 const app = express();
 app.use(
   cors({
-    origin: CORS_ORIGIN,
+    origin: function(origin, callback){
+      if(!origin || CORS_ORIGIN.includes(origin)){
+        callback(null, true) }
+      else{
+        callback(new Error('Not allowed by CORS'), false)
+      }
+    },
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
